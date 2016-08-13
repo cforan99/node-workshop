@@ -16,15 +16,19 @@ app.set('views', './views');
 
 var homeCtrl = require('./controllers/homeCtrl.js');
 app.get('/', homeCtrl.home);
+app.get('/about', homeCtrl.about);
 
 // Define static routes to serve static assets like images, styles, etc.
 // https://expressjs.com/en/starter/static-files.html
 
 app.use(express.static('public'));
+app.use(express.static('node_modules'));
 
 // Define page routes to specify which URLs will be handled by which controllers
 
 // Define API routes to serve up application data
+
+app.get('/*', homeCtrl.noRoute);
 
 // Define a catch-all 404 route
 // https://expressjs.com/en/guide/routing.html
@@ -33,6 +37,4 @@ app.use(express.static('public'));
 
 app.listen(3000, function() {
 	console.log('GDI Node App listening on port 3000!\n');
-	console.log('Serving jade template: home\n');
-	console.log('Writing home controller\n');
 });
