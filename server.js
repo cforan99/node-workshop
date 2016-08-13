@@ -4,18 +4,23 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
-	res.send('Hello World!');
-});
-
 // Set template engine to Jade
 // http://jade-lang.com/
 // https://expressjs.com/en/guide/using-template-engines.html
 
+var jade = require('jade');
+app.set('view engine', 'jade');
+app.set('views', './views');
+
 // Define controllers to handle routes
+
+var homeCtrl = require('./controllers/homeCtrl.js');
+app.get('/', homeCtrl.home);
 
 // Define static routes to serve static assets like images, styles, etc.
 // https://expressjs.com/en/starter/static-files.html
+
+app.use(express.static('public'));
 
 // Define page routes to specify which URLs will be handled by which controllers
 
@@ -27,5 +32,7 @@ app.get('/', function (req, res) {
 // Start your Express app up on port 3000
 
 app.listen(3000, function() {
-	console.log('GDI Node App listening on port 3000!');
+	console.log('GDI Node App listening on port 3000!\n');
+	console.log('Serving jade template: home\n');
+	console.log('Writing home controller\n');
 });
