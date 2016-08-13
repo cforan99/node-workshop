@@ -15,8 +15,7 @@ app.set('views', './views');
 // Define controllers to handle routes
 
 var homeCtrl = require('./controllers/homeCtrl.js');
-app.get('/', homeCtrl.home);
-app.get('/about', homeCtrl.about);
+var apiCtrl = require('./controllers/apiCtrl.js');
 
 // Define static routes to serve static assets like images, styles, etc.
 // https://expressjs.com/en/starter/static-files.html
@@ -26,12 +25,17 @@ app.use(express.static('node_modules'));
 
 // Define page routes to specify which URLs will be handled by which controllers
 
+app.get('/', homeCtrl.home);
+app.get('/about', homeCtrl.about);
+
 // Define API routes to serve up application data
 
-app.get('/*', homeCtrl.noRoute);
+app.get('/api/dinosaurs', apiCtrl.dinosaurs);
 
 // Define a catch-all 404 route
 // https://expressjs.com/en/guide/routing.html
+
+app.get('/*', homeCtrl.noRoute);
 
 // Start your Express app up on port 3000
 
