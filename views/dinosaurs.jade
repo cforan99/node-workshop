@@ -1,1 +1,9 @@
 // For-Each Loop in Jade: http://jade-lang.com/reference/iteration/
+
+extends layout
+
+block content
+	h1 Famous Dinosaurs
+	ul
+		each dino in dinos
+			li= dino.name

@@ -16,6 +16,7 @@ app.set('views', './views');
 
 var homeCtrl = require('./controllers/homeCtrl.js');
 var apiCtrl = require('./controllers/apiCtrl.js');
+var dinosaurCtrl = require('./controllers/dinosaurCtrl.js');
 
 // Define static routes to serve static assets like images, styles, etc.
 // https://expressjs.com/en/starter/static-files.html
@@ -27,6 +28,7 @@ app.use(express.static('node_modules'));
 
 app.get('/', homeCtrl.home);
 app.get('/about', homeCtrl.about);
+app.get('/dinosaurs', dinosaurCtrl.all);
 
 // Define API routes to serve up application data
 
