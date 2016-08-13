@@ -2,7 +2,12 @@
 // https://expressjs.com/en/starter/hello-world.html
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use( bodyParser.json() );
 
 // Set template engine to Jade
 // http://jade-lang.com/
@@ -32,7 +37,9 @@ app.get('/dinosaurs', dinosaurCtrl.all);
 
 // Define API routes to serve up application data
 
+
 app.get('/api/dinosaurs', apiCtrl.dinosaurs);
+app.post('/api/dinosaurs', apiCtrl.addDinosaur);
 
 // Define a catch-all 404 route
 // https://expressjs.com/en/guide/routing.html

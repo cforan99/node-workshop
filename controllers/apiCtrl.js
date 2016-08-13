@@ -13,3 +13,21 @@ exports.dinosaurs = function (req, res){
 	  res.send(JSON.parse(data));
 	});
 }
+
+exports.addDinosaur = function (req, res){
+
+	if (!req.body) return res.sendStatus(400);
+
+	var newDino = req.body;
+
+	fs.readFile(jsonPath, 'utf-8', function (err, data){
+	  if (err) throw err;
+	  var currentDinos = JSON.parse(data);
+	  currentDinos.push(newDino);
+
+	  fs. writeFile(jsonPath, JSON.stringify(currentDinos), function(err, info){
+	  	if (err) throw err;
+	  	res.send(currentDinos);
+	  });
+	});
+}
