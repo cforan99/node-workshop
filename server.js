@@ -1,7 +1,12 @@
-console.log("Welcome to Intro to Node!");
-
 // Create an Express app
 // https://expressjs.com/en/starter/hello-world.html
+
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+	res.send('Hello World!');
+});
 
 // Set template engine to Jade
 // http://jade-lang.com/
@@ -20,3 +25,7 @@ console.log("Welcome to Intro to Node!");
 // https://expressjs.com/en/guide/routing.html
 
 // Start your Express app up on port 3000
+
+app.listen(3000, function() {
+	console.log('GDI Node App listening on port 3000!');
+});
